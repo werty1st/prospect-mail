@@ -34,7 +34,7 @@ The main software architecture components and their versions are this:
 Clone the repository and run in development mode. (You need to have [git](https://git-scm.com/) installed)
 
 ```bash
-git clone https://github.com/julian.alarcon/prospect-mail
+git clone https://github.com/julian-alarcon/prospect-mail.git
 cd electron-outlook
 yarn
 yarn start
@@ -56,7 +56,7 @@ yarn run dist:linux:snap
 
 ## Download
 
-The released application can be downloaded [here](https://github.com/julian.alarcon/prospect-mail/releases).
+The released application can be downloaded [here](https://github.com/julian-alarcon/prospect-mail/releases).
 
 ## Installation
 
@@ -73,4 +73,4 @@ npm publish
 
 ## License
 
-[MIT](https://github.com/julian.alarcon/prospect-mail/blob/master/LICENSE) by [Julian Alarcon](https://desentropia.com) based on work on [electron-outlook](https://github.com/eNkru/electron-outlook) by [Howard J](https://enkru.github.io/)
+[MIT](https://github.com/julian-alarcon/prospect-mail/blob/master/LICENSE) by [Julian Alarcon](https://desentropia.com) based on work on [electron-outlook](https://github.com/eNkru/electron-outlook) by [Howard J](https://enkru.github.io/)
