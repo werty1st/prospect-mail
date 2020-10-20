@@ -27,6 +27,7 @@
     "yarn": "^1.22.0"
   },
   "scripts": {
+    "upgrade": "npx npm-check-updates -u",
     "start": "electron src/main.js",
     "pack": "electron-builder --dir",
     "dist:linux": "electron-builder --linux",
@@ -39,11 +40,12 @@
     "release": "electron-builder"
   },
   "dependencies": {
-    "electron-settings": "^3.2.0"
+    "electron-context-menu": "^2.3.0",
+    "electron-settings": "^4.0.2"
   },
   "devDependencies": {
-    "electron": "^8.2.3",
-    "electron-builder": "^22.5.1"
+    "electron": "^10.1.4",
+    "electron-builder": "^22.9.1"
   },
   "build": {
     "appId": "io.github.prospect.${name}",

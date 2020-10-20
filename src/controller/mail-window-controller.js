@@ -1,3 +1,4 @@
+const contextMenu = require('electron-context-menu')
 const { BrowserWindow, shell, ipcMain } = require('electron')
 const settings = require('electron-settings')
 const CssInjector = require('../js/css-injector')
@@ -7,10 +8,18 @@ const outlookUrl = 'https://outlook.office.com/mail'
 const deeplinkUrls = ['outlook.live.com/mail/deeplink', 'outlook.office365.com/mail/deeplink', 'outlook.office.com/mail/deeplink']
 const outlookUrls = ['outlook.live.com', 'outlook.office365.com', 'outlook.office.com']
 
+//todo add https://github.com/tkambler/electron-preferences to manage settings
+const corpUrls = [ 'zdf.de' ]
+const execString = `/opt/firefox/firefox -P ZDF` //exec(`${execString} ${url}`
+
+
 class MailWindowController {
     constructor() {
         this.init()
+        
+        contextMenu({})
     }
+
 
     init() {
         // Get configurations.
@@ -26,7 +35,10 @@ class MailWindowController {
             autoHideMenuBar: true,
             show: false,
             title: 'Prospect Mail',
-            icon: path.join(__dirname, '../../assets/outlook_linux_black.png')
+            icon: path.join(__dirname, '../../assets/outlook_linux_black.png'),
+            webPreferences: {
+                enableRemoteModule: true
+            }
         })
 
         // and load the index.html of the app.
@@ -142,11 +154,21 @@ class MailWindowController {
         console.log(url)
         if (new RegExp(deeplinkUrls.join('|')).test(url)) {
             // Default action - if the user wants to open mail in a new window - let them.
+            e.preventDefault()
+
         }
         else if (new RegExp(outlookUrls.join('|')).test(url)) {
             // Open calendar, contacts and tasks in the same window
             e.preventDefault()
             this.loadURL(url)
+        }
+        else if (new RegExp(corpUrls.join('|')).test(url)) {
+            //send url to custom browser profile
+            e.preventDefault()
+            const exec = require('child_process').exec;
+            exec(`${execString} ${url}`, (error, stdout, stderr) => { 
+                console.log(stdout);
+            });
         }
         else {
             // Send everything else to the browser
